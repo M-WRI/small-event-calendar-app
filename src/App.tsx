@@ -1,26 +1,36 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import {
+  endOfMonth,
+  endOfWeek,
+  startOfMonth,
+  startOfWeek,
+  subDays,
+} from "date-fns";
+import { useState } from "react";
+// TYPES
+type TDays = string[];
 
-function App() {
+const buildMonth = (date: Date) => {
+  const startDate = startOfWeek(startOfMonth(date));
+  const endDate = subDays(endOfWeek(endOfMonth(date)), 1);
+
+  return { startDate, endDate };
+};
+
+const App = (): JSX.Element => {
+  const [selectedDate, setSelectedDate] = useState<Date>(new Date());
+  const days: TDays = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
+
+  console.log(buildMonth(selectedDate));
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div>
+      {days.map((day, i) => (
+        <div key={i} className="">
+          {day}
+        </div>
+      ))}
     </div>
   );
-}
+};
 
 export default App;
