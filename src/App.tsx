@@ -20,8 +20,6 @@ const App = (): JSX.Element => {
   const [selectedDate, setSelectedDate] = useState<Date>(new Date());
   const days: TDays = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
 
-  console.log(buildMonth(selectedDate));
-
   return (
     <div>
       {days.map((day, i) => (
